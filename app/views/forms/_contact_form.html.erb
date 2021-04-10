@@ -1,0 +1,25 @@
+<%= form_for @contact, html: {class: "nifty_form"} do |f| %>
+  <div class="">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, id: 'first_name' %>
+  </div>
+  <div class="">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, id: 'last_name' %>
+  </div>
+  <div class="">
+    <%= f.label :email %>
+    <%= f.text_field :email, id: 'email' %>
+  </div>
+  <div class="">
+    <%= f.label :job_role %>
+    <%= f.text_field :job_role, id: 'job_role' %>
+  </div>
+  <div class="">
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, id: 'phone_number' %>
+  </div>
+  <div class="mb-4">
+    <%= f.submit(@contact.new_record? ? "Create contact" : "Update contact") %>
+  </div>
+<% end %>

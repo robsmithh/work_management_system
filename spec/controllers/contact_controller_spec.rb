@@ -8,7 +8,7 @@ RSpec.describe ContactsController, type: :controller do
   describe 'allows RESTful routes' do
 
     it 'should allow contact index route' do
-      get :contact
+      get :index
       expect(response).to have_http_status(200)
     end
 

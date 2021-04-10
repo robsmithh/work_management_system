@@ -3,10 +3,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  get '/contact', to: 'contacts#contact'
-  get '/contact/new', to: 'contacts#new'
-  patch '/contact/:id', to: 'contacts#edit'
-  delete '/contact/:id', to: 'contacts#destroy'
+  resources :contacts
 
 
 
