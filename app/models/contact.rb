@@ -1,4 +1,6 @@
 class Contact < ApplicationRecord
+  # belongs_to :user
+
   before_save :email.downcase
   # before_save :first_name.capitalize, :last_name.capitalize
 
