@@ -1,5 +1,11 @@
 <div class="container">
-  <%= link_to "Create contact", new_contact_path, class: "btn btn-danger mb-2 mt-2" %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to "Create contact", new_contact_path, class: "btn btn-danger mb-2 mt-2" %>
+  <% else %>
+    <div class="mb-2">
+
+    </div>
+  <% end %>
   <% @contacts.each do |contact| %>
     <div class="card mb-4" style="width: 18rem;">
       <div class="card-body">
@@ -7,8 +13,10 @@
         <p class="card-text"><%= contact.job_role %></p>
         <p class="card-text"><%= contact.email %></p>
         <p class="card-text"><%= contact.phone_number %></p>
-        <%= link_to "Edit", edit_contact_path(contact) %> |
-        <%= link_to "Delete", contact_path(contact), data: { confirm: "Are you sure you would like to delete this contact?"}, method: :delete %>
+        <% if current_user && current_user.admin? %>
+          <%= link_to "Edit", edit_contact_path(contact) %> |
+          <%= link_to "Delete", contact_path(contact), data: { confirm: "Are you sure you would like to delete this contact?"}, method: :delete %>
+        <% end %>
       </div>
     </div>
   <% end %>
