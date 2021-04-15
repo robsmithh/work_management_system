@@ -1,29 +1,3 @@
-<%= form_for @work_request, html: {class: "nifty_form"} do |f| %>
-  <div class="">
-    <%= f.label :scheme_name %>
-    <%= f.text_field :scheme_name, id: 'scheme_name' %>
-  </div>
-  <div class="">
-    <%= f.label :submission_date %>
-    <%= f.text_field :submission_date, id: 'submission_date' %>
-  </div>
-  <div class="">
-    <%= f.label :report_date %>
-    <%= f.text_field :report_date, id: 'report_date' %>
-  </div>
-  <div class="">
-    <%= f.label :issue_method %>
-    <%= f.text_field :issue_method, id: 'issue_method' %>
-  </div>
-  <div class="">
-    <%= f.label :project_type %>
-    <%= f.text_field :project_type, id: 'project_type' %>
-  </div>
-  <div class="">
-    <%= f.label :office %>
-    <%= f.text_field :office, id: 'office' %>
-  </div>
-  <div class="mb-4">
-    <%= f.submit  "Create contact" %>
-  </div>
-<% end %>
+<h2>Create new request</h2>
+<%= render 'layouts/errors', obj: @work_request %>
+<%= render 'work_requests/form' %>

@@ -1,0 +1,30 @@
+<div class="card mb-2">
+  <div class="card-header">
+    <h3>
+      <div class="">
+        <%= @work_request.scheme_name %>
+      </div>
+      ID: <%= @work_request.id %>
+    </h3>
+  </div>
+  <div class="card-body">
+    <h5>Request dates</h5>
+    <div class="card-text">
+      Submission Date : <%= @work_request.submission_date %>
+    </div>
+    <div class="card-text">
+      Report Date : <%= @work_request.report_date %>
+    </div>
+  </div>
+  <div class="card-body">
+    <h5>Request details</h5>
+    <div class="card-text">
+      Issue method : <%= @work_request.issue_method %>
+    </div>
+    <div class="card-text">
+      Project type : <%= @work_request.project_type %>
+    </div>
+  </div>
+</div>
+<%= link_to "Amend Request", edit_work_request_path(@work_request), class: "btn btn-sm btn-dark mb-2" %> |
+<%= link_to "Withdraw Request", work_request_path(@work_request), method: :destroy, data: { confirm: "Confirm"}, class: "btn btn-sm btn-dark mb-2" %>
