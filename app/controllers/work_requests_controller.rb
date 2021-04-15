@@ -24,9 +24,13 @@ class WorkRequestsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @workr_equest = WorkRequest.find(params[:id])
+  end
 
-  def edit; end
+  def edit
+    @work_request = WorkRequest.find(params[:id])
+  end
 
   def update; end
 
