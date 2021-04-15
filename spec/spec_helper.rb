@@ -93,4 +93,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  def create_user_and_log_in(admin)
+    user = User.create(email: "test_user@example.com", password: "password", admin: admin, analyst: true)
+    click_link 'Login'
+    fill_in :email, with: "test_user@example.com"
+    fill_in :password, with: "password"
+    click_button 'Log in'
+  end
+
+
 end

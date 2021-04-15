@@ -2,46 +2,47 @@ require 'rails_helper'
 
 RSpec.describe "Create contact", :type => :system do
   it 'enables creation of contact with valid credentials' do
-  when_i_arrive_on_home_page
-  and_click_contact_link
-  then_i_arrive_on_contact_page
+    when_i_arrive_on_home_page
+    create_user_and_log_in(true)
+    and_click_contact_link
+    then_i_arrive_on_contact_page
 
-  when_i_click_create_contact
-  then_i_arrive_on_new_contact_page
+    when_i_click_create_contact
+    then_i_arrive_on_new_contact_page
 
-  when_i_enter_invalid_contact_details_1
-  and_i_click_create_contact_button
-  then_i_am_told_the_contact_details_were_invalid_1
+    when_i_enter_invalid_contact_details_1
+    and_i_click_create_contact_button
+    then_i_am_told_the_contact_details_were_invalid_1
 
-  when_i_enter_invalid_contact_details_2
-  and_i_click_create_contact_button
-  then_i_am_told_the_contact_details_were_invalid_2
+    when_i_enter_invalid_contact_details_2
+    and_i_click_create_contact_button
+    then_i_am_told_the_contact_details_were_invalid_2
 
-  when_i_enter_valid_contact_details
-  and_i_click_create_contact_button
-  then_i_am_taken_to_contact_page
-  and_i_am_told_the_contact_was_added_successfully
+    when_i_enter_valid_contact_details
+    and_i_click_create_contact_button
+    then_i_am_taken_to_contact_page
+    and_i_am_told_the_contact_was_added_successfully
 
-  when_i_click_edit_article
-  then_i_arrive_on_edit_contact_page
+    when_i_click_edit_article
+    then_i_arrive_on_edit_contact_page
 
-  when_i_enter_invalid_contact_details_1
-  and_i_click_update_contact
-  then_i_am_told_the_contact_details_were_invalid_1
+    when_i_enter_invalid_contact_details_1
+    and_i_click_update_contact
+    then_i_am_told_the_contact_details_were_invalid_1
 
-  when_i_enter_invalid_contact_details_2
-  and_i_click_update_contact
-  then_i_am_told_the_contact_details_were_invalid_2
+    when_i_enter_invalid_contact_details_2
+    and_i_click_update_contact
+    then_i_am_told_the_contact_details_were_invalid_2
 
-  when_i_edit_with_valid_details
-  and_i_click_update_contact
-  then_i_am_taken_to_contact_page
-  and_i_am_told_the_contact_was_updated_successfully
+    when_i_edit_with_valid_details
+    and_i_click_update_contact
+    then_i_am_taken_to_contact_page
+    and_i_am_told_the_contact_was_updated_successfully
 
-  when_i_click_delete
-  and_i_click_confirm
-  then_i_am_taken_to_contact_page
-  and_i_am_told_the_contact_was_deleted_successfully
+    when_i_click_delete
+    and_i_click_confirm
+    then_i_am_taken_to_contact_page
+    and_i_am_told_the_contact_was_deleted_successfully
   end
 
   def when_i_arrive_on_home_page

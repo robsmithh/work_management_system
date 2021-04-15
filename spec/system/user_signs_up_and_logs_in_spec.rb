@@ -11,26 +11,10 @@ RSpec.describe 'Create user and sign in', :type => :system do
     and_i_click_create_account
     then_i_am_told_i_have_entered_invalid_values_1
 
-    when_i_enter_invalid_credentials_2
-    and_i_click_create_account
-    then_i_am_told_i_have_entered_invalid_values_2
-
     when_i_enter_valid_credentials
     and_i_click_create_account
     then_i_am_taken_to_the_homepage
     and_i_am_told_the_account_was_created_successfully
-
-    when_i_click_sign_in
-    then_i_am_taken_to_the_sign_in_page
-
-    when_i_enter_invalid_credentials
-    and_i_click_sign_in
-    then_i_am_told_i_have_entered_invalid_credentials
-
-    when_i_enter_valid_credentials
-    and_i_click_sign_in
-    then_i_am_taken_to_the_homepage
-    and_i_am_told_i_have_signed_in_successfully
 
     when_i_click_sign_out
     then_i_am_taken_to_the_homepage
@@ -42,52 +26,43 @@ RSpec.describe 'Create user and sign in', :type => :system do
   end
 
   def and_i_click_sign_up
-    click_link 'Sign up'
+    click_link 'Register'
   end
 
   def then_i_am_taken_to_the_sign_up_page
-    expect(page).to have_current_path(signup_path)
+    expect(page).to have_current_path(new_user_registration_path)
   end
 
   def when_i_enter_invalid_credentials_1
-    fill_in 'first_name', with: ''
-    fill_in 'last_name', with: ''
+    # fill_in 'first_name', with: ''
+    # fill_in 'last_name', with: ''
     fill_in 'email', with: ''
-    fill_in 'username', with: ''
-  end
-
-  def when_i_enter_invalid_credentials_2
-    fill_in 'first_name', with: 'a' * 41
-    fill_in 'last_name', with: 'a' * 41
-    fill_in 'email', with: 'testuser@example.com.'
-    fill_in 'username', with: 'a' * 4
+    # fill_in 'username', with: ''
+    fill_in 'password', with: ''
+    fill_in 'password_confirmation', with: ''
   end
 
   def and_i_click_create_account
-    click_button 'Create account'
+    click_button 'Sign up'
   end
 
   def then_i_am_told_i_have_entered_invalid_values_1
-    expect(page).to have_text("First name can't be blank")
-    expect(page).to have_text("Last name can't be blank")
-    expect(page).to have_text("Phone number can't be blank")
-    expect(page).to have_text("Job role can't be blank")
+    # # expect(page).to have_text("First name can't be blank")
+    # # expect(page).to have_text("Last name can't be blank")
+    # expect(page).to have_text("Phone number can't be blank")
+    # expect(page).to have_text("Job role can't be blank")
     expect(page).to have_text("Email can't be blank")
+    expect(page).to have_text("Password can't be blank")
   end
 
-  def then_i_am_told_i_have_entered_invalid_values_2
-    expect(page).to have_text("First name is too short (minimum is 2 characters)")
-    expect(page).to have_text("Last name is too short (minimum is 2 characters)")
-    expect(page).to have_text("Phone number is too short (minimum is 5 characters)")
-    expect(page).to have_text("Job role is too short (minimum is 2 characters)")
-    expect(page).to have_text("Email is invalid")
-  end
 
   def when_i_enter_valid_credentials
-    fill_in 'first_name', with: 'test'
-    fill_in 'last_name', with: 'user'
+    # fill_in 'first_name', with: 'test'
+    # fill_in 'last_name', with: 'user'
     fill_in 'email', with: 'testuser@example.com'
-    fill_on 'username', with: 'test_user'
+    # fill_in 'username', with: 'test_user'
+    fill_ib 'password', with: 'password'
+    fill_ib 'password_confirmation', with: 'password'
   end
 
   def then_i_am_taken_to_the_homepage
@@ -95,7 +70,7 @@ RSpec.describe 'Create user and sign in', :type => :system do
   end
 
   def and_i_am_told_the_account_was_created_successfully
-    expect(page).to have_text('Account created successfully')
+    expect(page).to have_text('Welcome! You have signed up successfully.')
   end
 
   def when_i_click_sign_in
@@ -103,7 +78,7 @@ RSpec.describe 'Create user and sign in', :type => :system do
   end
 
   def then_i_am_taken_to_the_sign_in_page
-    expect(page).to have_current_path(signin_path)
+    expect(page).to have_current_path(new_user_session_path)
   end
 
   def when_i_enter_invalid_credentials
@@ -122,6 +97,7 @@ RSpec.describe 'Create user and sign in', :type => :system do
   def when_i_enter_valid_credentials
     fill_in 'email', with: 'testuser@example.com'
     fill_in 'password', with: 'password'
+    fill_in 'password_confirmation', with: 'password'
   end
 
   def and_i_am_told_i_have_signed_in_successfully
@@ -133,6 +109,6 @@ RSpec.describe 'Create user and sign in', :type => :system do
   end
 
   def and_i_am_told_i_have_signed_out_successfully
-    expect(page).to have_text('Sign out successful')
+    expect(page).to have_text('Signed out successfully.')
   end
 end
