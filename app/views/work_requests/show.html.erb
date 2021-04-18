@@ -28,3 +28,6 @@
 </div>
 <%= link_to "Amend Request", edit_work_request_path(@work_request), class: "btn btn-sm btn-dark mb-2" %> |
 <%= link_to "Withdraw Request", work_request_path(@work_request), method: :destroy, data: { confirm: "Confirm"}, class: "btn btn-sm btn-dark mb-2" %>
+<div class="">
+  <%= link_to "Submit Data", edit_data_submission_path(@work_request.data_submission), class: "btn btn-sm btn-dark mb-2" %>
+</div>

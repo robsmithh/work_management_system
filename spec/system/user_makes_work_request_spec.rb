@@ -13,10 +13,6 @@ RSpec.describe 'create work request', :type => :system do
     and_i_click_create_request
     then_i_am_told_i_have_entered_invalid_credentials_1
 
-    # when_i_enter_invalid_credentials_2
-    # and_i_click_create_request
-    # then_i_am_told_i_have_entered_invalid_credentials_2
-
     when_i_enter_valid_credentials
     and_i_click_create_request
     then_i_am_taken_to_the_requests_index_page
@@ -72,15 +68,6 @@ RSpec.describe 'create work request', :type => :system do
     expect(page).to have_text("Issue method can't be blank")
     expect(page).to have_text("Project type can't be blank")
     expect(page).to have_text("Office can't be blank")
-  end
-
-  def then_i_am_told_i_have_entered_invalid_credentials_2
-    expect(page).to have_text("scheme_name can't be blank")
-    expect(page).to have_text("submission_date can't be blank")
-    expect(page).to have_text("report_date can't be blank")
-    expect(page).to have_text("issue_method can't be blank")
-    expect(page).to have_text("project_type can't be blank")
-    expect(page).to have_text("office can't be blank")
   end
 
   def when_i_enter_valid_credentials

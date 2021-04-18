@@ -9,6 +9,7 @@ describe WorkRequest, type: :model do
       it { should validate_presence_of(:issue_method) }
       it { should validate_presence_of(:project_type) }
       it { should validate_presence_of(:office) }
+      it { should validate_presence_of(:status) }
 
     end
   end

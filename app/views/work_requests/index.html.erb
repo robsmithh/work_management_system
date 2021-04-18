@@ -5,26 +5,31 @@
 <% if @user.work_requests.any? %>
   <% @user.work_requests.each do |request| %>
     <div class="entry col-xs-4 col-xs-offset-0 col-lg-4 col-lg-offset-0">
-    <div class="card mb-2" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">
-          <div class="">
-            <%= link_to request.scheme_name, work_request_path(request) %>
+      <div class="card mb-2" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">
+            <div class="">
+              <%= link_to request.scheme_name, work_request_path(request) %>
+            </div>
+            <div class="">
+              ID: <%= request.id %>
+            </div>
+          </h5>
+          <div class="card-subtitle mb-2 text-muted">
+            Submission Date: <%= request.submission_date %>
           </div>
-          <div class="">
-            ID: <%= request.id %>
+          <div class="card-subtitle mb-2 text-muted">
+            Current Status: <%= request.status %>
           </div>
-        </h5>
-        <div class="card-subtitle mb-2 text-muted">
-          Submission Date: <%= request.submission_date %>
+          <%= link_to "Amend request", edit_work_request_path(request), class: "btn btn-sm btn-dark mb-2" %> |
+          <%= link_to "Withdraw Request",  work_request_path(request), method: :delete, data: { confirm: "Confirm"}, class: "btn btn-sm btn-dark mb-2" %>
+          <div class="">
+            <% if request.data_submission %>
+              <%= link_to "Data Submission", data_submission_path(request.data_submission), class: "btn btn-sm btn-dark mb-2" %>
+            <% end %>
+          </div>
         </div>
-        <div class="card-subtitle mb-2 text-muted">
-          Current Status:
-        </div>
-        <%= link_to "Amend request", edit_work_request_path(request), class: "btn btn-sm btn-dark mb-2" %>
-        <%= link_to "Withdraw Request",  work_request_path(request), method: :delete, data: { confirm: "Confirm"}, class: "btn btn-sm btn-dark" %>
       </div>
-    </div>
     </div>
 
   <% end %>
