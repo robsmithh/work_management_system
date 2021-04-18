@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   resources :contacts
 
   resources :work_requests
+
+
+  resources :data_submissions, except: [:index, :destroy]
+
 end
