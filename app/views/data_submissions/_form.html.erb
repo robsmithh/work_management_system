@@ -1,0 +1,39 @@
+<%= form_for @data_submission do |f| %>
+  <table class="table-bordered mb-2">
+    <colgroup>
+      <col span="1" style="width: 20%;">
+      <col span="3">
+   </colgroup>
+   <tr>
+     <td><%= f.label :data_location %></td>
+     <td><%= f.text_field :data_location, id: 'data_location' %></td>
+   </tr>
+   <tr>
+     <td><%= f.label :source_data %></td>
+     <td><%= f.text_field :source_data, id: 'source_data' %></td>
+   </tr>
+   <tr>
+     <td><%= f.label :working_data %></td>
+     <td><%= f.text_field :working_data, id: 'working_data' %></td>
+   </tr>
+   <tr>
+     <td><%= f.label :final_data %></td>
+     <td><%= f.text_field :final_data, id: 'final_data' %></td>
+   </tr>
+   <tr>
+     <td><%= f.label :manipulation_summary %></td>
+     <td><%= f.text_field :manipulation_summary, id: 'manipulation_summary' %></td>
+   </tr>
+   <tr>
+     <td><%= f.label :data_spec %></td>
+     <td><%= f.text_field :data_spec, id: 'data_spec' %></td>
+   </tr>
+   <tr>
+     <td><%= f.label :duplicate_members %></td>
+     <td><%= f.text_field :duplicate_members, id: 'duplicate_members' %></td>
+   </tr>
+ </table>
+    <div class="mb-4">
+      <%= f.submit "Submit Data" %>
+    </div>
+<% end %>
