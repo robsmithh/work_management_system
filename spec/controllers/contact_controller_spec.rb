@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe ContactsController, type: :controller do
   before() do
     @contact = Contact.create(first_name: 'john', last_name: 'doe', email: 'johndoe@example.com', job_role: 'Job Role', phone_number: '12345678901')
+    user = User.create(email: "test_user@example.com", password: "password", admin: true, analyst: true)
+    sign_in user
   end
 
   describe 'allows RESTful routes' do

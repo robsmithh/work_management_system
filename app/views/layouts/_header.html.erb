@@ -12,9 +12,14 @@
               <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
             </li>
           <% else %>
+            <% if current_user.analyst? %>
+              <%= link_to "Awaiting approval", awaiting_approval_path, class: "nav-link" %>
+              <%= link_to "Summary", summary_path, class: "nav-link" %>
+            <% else %>
             <li class="nav-item">
               <%= link_to "My Requests", work_requests_path, class: "nav-link" %>
             </li>
+            <% end %>
             <li class="nav-item">
               <%= link_to "Edit profile", edit_user_registration_path, class: "nav-link" %>
             </li>
@@ -22,7 +27,6 @@
               <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "nav-link" %>
             </li>
           <% end %>
-
         </ul>
       </form>
     </div>

@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="column">
+      <table class="table table-bordered">
+        <thead>
+          <th colspan="3">Awaiting data</th>
+        </thead>
+        <tr>
+          <th>Scheme name</th>
+          <th>Due date</th>
+          <th>ID</th>
+        <% @work_requests.each do |request| %>
+          <% if request.status == "Confirmed - awaiting submission" && request.submission_date >= Date.today %>
+            <tr>
+              <td><%= request.scheme_name %></td>
+              <td><%= request.submission_date %></td>
+              <td><%= link_to request.id, work_request_path(request) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div class="column">
+      <table class="table table-bordered">
+        <thead>
+          <th colspan="3">Data received</th>
+        </thead>
+        <tr>
+          <th>Scheme name</th>
+          <th>Due date</th>
+          <th>ID</th>
+        <% @work_requests.each do |request| %>
+          <% if request.status == "Data submitted" %>
+            <tr>
+              <td><%= request.scheme_name %></td>
+              <td><%= request.submission_date %></td>
+              <td><%= link_to request.id, work_request_path(request) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div class="column">
+      <table class="table table-bordered">
+        <thead>
+          <th colspan="3">Overdue data</th>
+        </thead>
+        <tr>
+          <th>Scheme name</th>
+          <th>Due date</th>
+          <th>ID</th>
+        <% @work_requests.each do |request| %>
+          <% if request.status == "Confirmed - awaiting submission" && request.submission_date < Date.today %>
+            <tr>
+              <td><%= request.scheme_name %></td>
+              <td><%= request.submission_date %></td>
+              <td><%= link_to request.id, work_request_path(request) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div class="column">
+      <table class="table table-bordered">
+        <thead>
+          <th colspan="3">Further information required</th>
+        </thead>
+        <tr>
+          <th>Scheme name</th>
+          <th>Due date</th>
+          <th>ID</th>
+        <% @work_requests.each do |request| %>
+          <% if request.status == "Further information required" %>
+            <tr>
+              <td><%= request.scheme_name %></td>
+              <td><%= request.submission_date %></td>
+              <td><%= link_to request.id, work_request_path(request) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div class="column">
+      <table class="table table-bordered">
+        <thead>
+          <th colspan="3">Requires further analysis</th>
+        </thead>
+        <tr>
+          <th>Scheme name</th>
+          <th>Due date</th>
+          <th>ID</th>
+        <% @work_requests.each do |request| %>
+          <% if request.status == "Requires further analysis" %>
+            <tr>
+              <td><%= request.scheme_name %></td>
+              <td><%= request.submission_date %></td>
+              <td><%= link_to request.id, work_request_path(request) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -93,13 +93,20 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-  def create_user_and_log_in(admin)
-    user = User.create(email: "test_user@example.com", password: "password", admin: admin, analyst: true)
+  def create_user_and_log_in(admin, analyst = true, email = "test_user@example.com")
+    user = User.create(email: email, password: "password", admin: admin, analyst: analyst)
+
+    # post :new_user_session_path, params: {email: user.email, password: user.password}
     click_link 'Login'
-    fill_in :email, with: "test_user@example.com"
+    fill_in :email, with: email
     fill_in :password, with: "password"
     click_button 'Log in'
   end
 
-
+  def create_work_request()
+    request = WorkRequest.new(scheme_name: "Test Scheme", submission_date: '01/01/2021', report_date: '02/01/2021',
+                              issue_method: "Mailing", project_type: "project", office: "London", status: "Awaiting Approval")
+    request.user = User.last
+    request.save
+  end
 end

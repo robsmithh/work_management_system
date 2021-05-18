@@ -8,6 +8,9 @@
     </h3>
   </div>
   <div class="card-body">
+    Status : <%= @work_request.status %>
+  </div>
+  <div class="card-body">
     <h5>Request dates</h5>
     <div class="card-text">
       Submission Date : <%= @work_request.submission_date %>
@@ -26,8 +29,18 @@
     </div>
   </div>
 </div>
-<%= link_to "Amend Request", edit_work_request_path(@work_request), class: "btn btn-sm btn-dark mb-2" %> |
-<%= link_to "Withdraw Request", work_request_path(@work_request), method: :destroy, data: { confirm: "Confirm"}, class: "btn btn-sm btn-dark mb-2" %>
-<div class="">
-  <%= link_to "Submit Data", edit_data_submission_path(@work_request.data_submission), class: "btn btn-sm btn-dark mb-2" %>
-</div>
+<% if current_user.analyst? %>
+  <% if !@work_request.request_approved? %>
+    <%= link_to "Confirm request", work_request_path(@work_request), method: :post, class: "btn btn-sm btn-dark mb-2" %>
+  <% else %>
+    <%= link_to "Amend request", edit_work_request_path(@work_request), class: "btn btn-sm btn-dark mb-2" %>
+    <%= link_to "Cancel", :back, class: "btn btn-sm btn-dark mb-2" %>
+  <% end %>
+<% else %>
+  <%= link_to "Amend request", edit_work_request_path(@work_request), class: "btn btn-sm btn-dark mb-2" %> |
+  <%= link_to "Withdraw request", work_request_path(@work_request), method: :destroy, data: { confirm: "Confirm"}, class: "btn btn-sm btn-dark mb-2" %>
+  <div class="">
+    <%= link_to "Submit data", edit_data_submission_path(@work_request.data_submission), class: "btn btn-sm btn-dark mb-2" %>
+    <%= link_to "Cancel", :back, class: "btn btn-sm btn-dark mb-2" %>
+  </div>
+<% end %>

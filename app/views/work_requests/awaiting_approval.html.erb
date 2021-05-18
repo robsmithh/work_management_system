@@ -1,0 +1,17 @@
+<% @work_requests.each do |request| %>
+  <div class="card mb-2 mt-2" style="width: 20rem;">
+    <div class="card-title">
+      <%= link_to request.scheme_name, work_request_path(request), class: "btn btn-dark" %> |
+      ID: <%= request.id %>
+    </div>
+    <div class="">
+      submitted by - <%= request.user.email %>
+    </div>
+    <div class="">
+      Sub date - <%= request.submission_date %>
+    </div>
+    <div class="">
+      Rep date - <%= request.report_date %>
+    </div>
+  </div>
+<% end %>

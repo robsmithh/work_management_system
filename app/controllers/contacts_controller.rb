@@ -5,7 +5,12 @@ class ContactsController < ApplicationController
   end
 
   def new
-    @contact = Contact.new
+    if current_user && current_user.admin?
+      @contact = Contact.new
+    else
+      flash[:alert] = "You do not have permission to access new contacts page"
+      redirect_to root_path
+    end
   end
 
   def create

@@ -2,10 +2,9 @@ require 'rails_helper'
 RSpec.describe 'create work request', :type => :system do
   it 'enables the creation of a work request' do
     when_i_arrive_on_home_page
-    create_user_and_log_in(false)
+    @user = create_user_and_log_in(false, false)
     and_i_click_my_requests
     then_i_am_taken_to_the_requests_index_page
-
     when_i_click_new_request
     then_i_am_taken_to_the_new_request_page
 
@@ -17,6 +16,22 @@ RSpec.describe 'create work request', :type => :system do
     and_i_click_create_request
     then_i_am_taken_to_the_requests_index_page
     and_i_am_told_my_request_was_added
+
+    when_i_click_amend_request
+    then_i_am_taken_to_the_amend_request_page
+
+    when_i_enter_invalid_credentials_1
+    and_i_click_amend_request
+    then_i_am_told_i_have_entered_invalid_credentials_1
+
+    when_i_enter_valid_credentials
+    and_i_click_amend_request
+    then_i_am_taken_to_the_requests_index_page
+    and_i_am_told_my_request_was_amended
+
+    when_i_click_withdraw_request
+    and_click_confirm
+    then_i_am_told_the_request_was_successfully_withdrawn
   end
 
   def when_i_arrive_on_home_page
@@ -83,4 +98,31 @@ RSpec.describe 'create work request', :type => :system do
     expect(page).to have_text('Request successfully created')
   end
 
+  def when_i_click_amend_request
+    click_link "Amend request"
+  end
+
+  def and_i_click_amend_request
+    click_button 'Amend request'
+  end
+
+  def and_i_am_told_my_request_was_amended
+    expect(page).to have_text('Request successfully amended')
+  end
+
+  def then_i_am_taken_to_the_amend_request_page
+    expect(page).to have_current_path(edit_work_request_path(WorkRequest.last))
+  end
+
+  def when_i_click_withdraw_request
+    click_link "Withdraw Request"
+  end
+
+  def and_click_confirm
+    page.driver.browser.switch_to.alert.accept
+  end
+
+  def then_i_am_told_the_request_was_successfully_withdrawn
+    expect(page).to have_text("Request successfully withdrawn")
+  end
 end

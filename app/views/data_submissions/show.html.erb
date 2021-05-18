@@ -1,41 +1,38 @@
 <h3>Submission for <%= @data_submission.work_request.scheme_name %>, ID: <%= @data_submission.work_request.id %></h3>
 
-
-<%= form_for @data_submission do |f| %>
   <table class="table-bordered table-striped mb-2">
     <colgroup>
       <col span="1" style="width: 20%;">
       <col span="3">
    </colgroup>
     <tr>
-      <td><%= f.label :data_location %></td>
-      <td><%= f.label @data_submission.data_location, id: 'data_location' %></td>
+      <td><%= "Data location" %></td>
+      <td><%= @data_submission.data_location%></td>
     </tr>
     <tr>
-      <td><%= f.label :source_data %></td>
-      <td><%= f.label @data_submission.source_data, id: 'source_data' %></td>
+      <td><%= "Source data" %></td>
+      <td><%= @data_submission.source_data %></td>
     </tr>
     <tr>
-      <td><%= f.label :working_data %></td>
-      <td><%= f.label @data_submission.working_data, id: 'working_data' %></td>
+      <td><%= "Working data" %></td>
+      <td><%= @data_submission.working_data %></td>
     </tr>
     <tr>
-      <td><%= f.label :final_data %></td>
-      <td><%= f.label @data_submission.final_data, id: 'final_data' %></td>
+      <td><%= "Final data" %></td>
+      <td><%= @data_submission.final_data %></td>
     </tr>
     <tr>
-      <td><%= f.label :manipulation_summary %></td>
-      <td><%= f.label @data_submission.manipulation_summary, id: 'manipulation_summary' %></td>
+      <td><%= "Manipulation summary" %></td>
+      <td><%= @data_submission.manipulation_summary %></td>
     </tr>
     <tr>
-      <td><%= f.label :data_spec %></td>
-      <td><%= f.label @data_submission.data_spec, id: 'data_spec' %></td>
+      <td><%= "Data specification" %></td>
+      <td><%= @data_submission.data_spec %></td>
     </tr>
     <tr>
-      <td><%= f.label :duplicate_members %></td>
-      <td><%= f.label @data_submission.duplicate_members, id: 'duplicate_members' %></td>
+      <td><%= "Duplicate members" %></td>
+      <td><%= @data_submission.duplicate_members %></td>
     </tr>
-
   </table>
-<% end %>
 <%= link_to "Submit Data", edit_data_submission_path(@data_submission), class: "btn btn-sm btn-dark mb-2" %>
+<%= link_to "Cancel", :back, class: "btn btn-dark" %>

@@ -1,29 +1,51 @@
-<%= form_for @work_request do |f| %>
-  <div class="">
-    <%= f.label :scheme_name %>
-    <%= f.text_field :scheme_name, id: 'scheme_name' %>
-  </div>
-  <div class="">
-    <%= f.label :submission_date %>
-    <%= f.text_field :submission_date, id: 'submission_date' %>
-  </div>
-  <div class="">
-    <%= f.label :report_date %>
-    <%= f.text_field :report_date, id: 'report_date' %>
-  </div>
-  <div class="">
-    <%= f.label :issue_method %>
-    <%= f.text_field :issue_method, id: 'issue_method' %>
-  </div>
-  <div class="">
-    <%= f.label :project_type %>
-    <%= f.text_field :project_type, id: 'project_type' %>
-  </div>
-  <div class="">
-    <%= f.label :office %>
-    <%= f.text_field :office, id: 'office' %>
-  </div>
-  <div class="mb-4">
-    <%= f.submit(@work_request.new_record? ? "Create request" : "Amend request") %>
-  </div>
-<% end %>
+<div class="card mb-2">
+  <%= form_for @work_request do |f| %>
+    <% if current_user.analyst? %>
+      <div class="card-header mb-2">
+        <h3>
+          <div class="">
+            <%= @work_request.scheme_name %> |
+            ID: <%= @work_request.id %>
+          </div
+        </h3>
+      </div>
+    <% else %>
+      <div class="input-group mb-3">
+        <span class="input-group-text w-10" style="width: 150px;">Scheme name</span>
+        <%= f.text_field :scheme_name, id: 'scheme_name', class: "form-control" %>
+      </div>
+    <% end %>
+    <% if current_user.analyst? %>
+    <div class="input-group mb-3">
+      <span class="input-group-text w-10" style="width: 150px;">Status</span>
+      <%= f.select :status, ["Data submitted", "Requires further analysis", "Further information required"],
+                          id: 'status', class: "form-control" %>
+    </div>
+    <% end %>
+    <div class="input-group mb-3">
+      <span class="input-group-text w-10" style="width: 150px;">Submission date</span>
+      <%= f.text_field :submission_date, id: 'submission_date', class: "form-control" %>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text w-10" style="width: 150px;">Report date</span>
+      <%= f.text_field :report_date, id: 'report_date', class: "form-control" %>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text w-10" style="width: 150px;">Issue method</span>
+      <%= f.text_field :issue_method, id: 'issue_method', class: "form-control" %>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text w-10" style="width: 150px;">Project type</span>
+      <%= f.text_field :project_type, id: 'project_type', class: "form-control" %>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text w-10" style="width: 150px;">Office</span>
+      <%= f.text_field :office, id: 'office', class: "form-control" %>
+    </div>
+    <div class="mb-4">
+      <%= f.submit(@work_request.new_record? ? "Create request" : "Amend request", class: "btn btn-dark") %>
+      <%= link_to "Cancel", :back, class: "btn btn-dark" %>
+    </div>
+</div>
+
+  <% end %>
