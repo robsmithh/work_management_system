@@ -37,10 +37,31 @@
     <%= link_to "Cancel", :back, class: "btn btn-sm btn-dark mb-2" %>
   <% end %>
 <% else %>
-  <%= link_to "Amend request", edit_work_request_path(@work_request), class: "btn btn-sm btn-dark mb-2" %> |
+  <%= link_to "Amend request", edit_work_request_path(@work_request), class: "btn btn-sm btn-dark mb-4" %> |
   <%= link_to "Withdraw request", work_request_path(@work_request), method: :destroy, data: { confirm: "Confirm"}, class: "btn btn-sm btn-dark mb-2" %>
   <div class="">
-    <%= link_to "Submit data", edit_data_submission_path(@work_request.data_submission), class: "btn btn-sm btn-dark mb-2" %>
+    <%= link_to "Submit data", edit_data_submission_path(@work_request.data_submission), class: "btn btn-sm btn-dark mb-4" %>
     <%= link_to "Cancel", :back, class: "btn btn-sm btn-dark mb-2" %>
   </div>
 <% end %>
+<div class="mt-4">
+  <%= form_for @note do |f| %>
+  <div class="input-group mb-3">
+    <span class="input-group-text w-10" style="width: 150px;">Add note</span>
+    <%= f.text_field :note, id: 'note', class: "form-control" %>
+  </div>
+  <div class="mb-4">
+    <%= f.submit "Add note", class: "btn btn-dark" %>
+    <%= hidden_field_tag :wr_id, @work_request.id %>
+  </div>
+  <% end %>
+</div>
+<div class="mb-4">
+<% if @work_request.notes.any? %>
+  <% @work_request.notes.each do |note| %>
+    <div class="">
+      <%= note.created_at %> - <%= note.note %>
+    </div>
+  <% end %>
+<% end %>
+</div>

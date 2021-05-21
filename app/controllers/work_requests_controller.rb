@@ -29,6 +29,7 @@ class WorkRequestsController < ApplicationController
 
   def show
     @work_request = WorkRequest.find(params[:id])
+    @note = Note.new
   end
 
   def edit

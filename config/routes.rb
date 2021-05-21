@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get '/change_status/:id', to: 'work_requests#change_status'
 
+  resource :notes, except: [:index, :destroy, :show, :update]
+
   resources :data_submissions, except: [:index, :destroy]
 
 end
