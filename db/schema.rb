@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_162530) do
+ActiveRecord::Schema.define(version: 2021_06_02_164023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,9 @@ ActiveRecord::Schema.define(version: 2021_05_20_162530) do
     t.boolean "request_approved", default: false
     t.datetime "time_approved"
     t.string "approved_by"
+    t.boolean "request_rejected"
+    t.datetime "time_rejected"
+    t.string "rejected_by"
   end
 
 end
