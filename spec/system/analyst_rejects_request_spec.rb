@@ -1,6 +1,6 @@
 require 'rails_helper'
-RSpec.describe 'user creates work request and analyst confirms it', :type => :system do
-  it 'enables analyst user to confirm a valid work request' do
+RSpec.describe 'analyst rejects request', :type => :system do
+  it 'allows analyst user to reject request user has made' do
     when_i_arrive_on_home_page
     create_user_and_log_in(false, false)
     create_work_request
@@ -20,11 +20,9 @@ RSpec.describe 'user creates work request and analyst confirms it', :type => :sy
     when_i_click_the_scheme_name_link
     then_i_am_taken_to_the_show_request_page
 
-    when_i_click_confirm_request
+    when_i_click_reject_request
     then_i_am_taken_to_the_aa_index_page
-
-    when_i_visit_the_summary_page
-    then_i_should_see_the_accepted_request
+    and_i_am_told_the_request_was_rejected
   end
 
   def when_i_arrive_on_home_page
@@ -76,15 +74,15 @@ RSpec.describe 'user creates work request and analyst confirms it', :type => :sy
     expect(page).to have_text(WorkRequest.last.scheme_name)
   end
 
-  def when_i_click_confirm_request
-    click_link 'Confirm request'
+  def when_i_click_reject_request
+    click_link 'Reject request'
   end
 
-  def when_i_visit_the_summary_page
-    click_link 'Summary'
+  def then_i_am_taken_to_the_aa_index_page
+    expect(page).to have_current_path(awaiting_approval_path)
   end
 
-  def then_i_should_see_the_accepted_request
-    expect(page).to have_text(WorkRequest.last.scheme_name)
+  def and_i_am_told_the_request_was_rejected
+    expect(page).to have_text('Request successfully rejected')
   end
 end

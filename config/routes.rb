@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   post '/work_requests/:id', to: "work_requests#accept_request"
 
+  post '/reject', to: 'work_requests#reject_request'
+
   get '/awaiting_approval', to: 'work_requests#awaiting_approval'
 
   get '/summary', to: 'work_requests#summary'
