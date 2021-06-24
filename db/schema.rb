@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_164023) do
+ActiveRecord::Schema.define(version: 2021_06_04_151057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,18 @@ ActiveRecord::Schema.define(version: 2021_06_02_164023) do
     t.integer "work_request_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "time_viewed"
+    t.boolean "viewed", default: false
+    t.integer "added_by"
+    t.text "message"
+    t.boolean "analyst_notification", default: false
+    t.integer "work_request_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "first_name"
@@ -78,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_06_02_164023) do
     t.boolean "request_approved", default: false
     t.datetime "time_approved"
     t.string "approved_by"
-    t.boolean "request_rejected"
+    t.boolean "request_rejected", default: false
     t.datetime "time_rejected"
     t.string "rejected_by"
   end

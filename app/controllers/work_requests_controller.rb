@@ -59,6 +59,7 @@ class WorkRequestsController < ApplicationController
       @work_request.approved_by = Etc.getlogin
       @work_request.status = "Confirmed - awaiting submission"
       @work_request.update(params.permit(:request_approved, :time_approved, :approved_by, :status))
+      new_notification(@work_request, false)
       flash[:notice] = "Request successfully confirmed"
       redirect_to awaiting_approval_path
     else
@@ -75,6 +76,7 @@ class WorkRequestsController < ApplicationController
       @work_request.rejected_by = Etc.getlogin
       @work_request.status = "Rejected"
       @work_request.update(params.permit(:request_rejected, :time_rejected, :rejected_by, :status))
+      new_notification(@work_request, false)
       flash[:notice] = "Request successfully rejected"
       redirect_to awaiting_approval_path
     else
@@ -95,6 +97,7 @@ class WorkRequestsController < ApplicationController
   def destroy
     @work_request = WorkRequest.find(params[:id])
     @work_request.destroy
+    new_notification(@work_request, true)
     flash[:notice] = "Request successfully withdrawn"
     redirect_to work_requests_path
   end

@@ -22,4 +22,6 @@ Rails.application.routes.draw do
 
   resources :data_submissions, except: [:index, :destroy]
 
+  resources :notifications, except: [:destroy, :show]
+
 end

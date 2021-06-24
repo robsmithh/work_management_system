@@ -1,0 +1,13 @@
+<% @notifications.each do |notification| %>
+  <div class="card mb-2 mt-2" style="width: 20rem;">
+    <div class="card-title">
+      <%= link_to "Job ID -  #{notification.work_request_id}", work_request_path(notification.work_request_id), class: "btn btn-dark" %>
+    </div>
+    <div class="card-body">
+      <%= notification.message %>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Acknowledge notification", notification_path(notification), method: :put, class: "btn btn-dark" %>
+    </div>
+  </div>
+<% end %>

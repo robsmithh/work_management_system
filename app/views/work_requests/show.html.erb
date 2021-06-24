@@ -9,6 +9,8 @@
   </div>
   <div class="card-body">
     Status : <%= @work_request.status %>
+    <br>
+    Submitted by : <%= @work_request.user.email %>
   </div>
   <div class="card-body">
     <h5>Request dates</h5>
@@ -44,6 +46,16 @@
     <%= link_to "Submit data", edit_data_submission_path(@work_request.data_submission), class: "btn btn-sm btn-dark mb-4" %>
     <%= link_to "Cancel", :back, class: "btn btn-sm btn-dark mb-2" %>
   </div>
+<% end %>
+<% if @work_request.notifications.any? %>
+  <% @work_request.notifications.each do |notification| %>
+    <% if !notification.viewed %>
+      <div class="">
+        <%= notification.message %>
+        <%= link_to "Acknowledge notifcation", notification_path(notification), method: :patch, class: "btn btn-sm btn-dark mb-4" %>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
 <div class="mt-4">
   <%= form_for @note do |f| %>

@@ -22,7 +22,7 @@ RSpec.describe 'Create user and sign in', :type => :system do
   end
 
   def when_i_arrive_on_the_homepage
-    visit '/'
+    visit ''
   end
 
   def and_i_click_sign_up
@@ -34,10 +34,7 @@ RSpec.describe 'Create user and sign in', :type => :system do
   end
 
   def when_i_enter_invalid_credentials_1
-    # fill_in 'first_name', with: ''
-    # fill_in 'last_name', with: ''
     fill_in 'email', with: ''
-    # fill_in 'username', with: ''
     fill_in 'password', with: ''
     fill_in 'password_confirmation', with: ''
   end
@@ -47,10 +44,6 @@ RSpec.describe 'Create user and sign in', :type => :system do
   end
 
   def then_i_am_told_i_have_entered_invalid_values_1
-    # # expect(page).to have_text("First name can't be blank")
-    # # expect(page).to have_text("Last name can't be blank")
-    # expect(page).to have_text("Phone number can't be blank")
-    # expect(page).to have_text("Job role can't be blank")
     expect(page).to have_text("Email can't be blank")
     expect(page).to have_text("Password can't be blank")
   end
